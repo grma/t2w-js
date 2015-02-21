@@ -12,7 +12,7 @@ req.onload = function(e) {
          response = JSON.parse(req.responseText);
          if (response) {
             var msg = response.quote;
-            Talk2Watch.sendSms(msg, "KMN.");
+            Talk2Watch.sendSms(msg, "KarMeN.");
          }
       }
    }
