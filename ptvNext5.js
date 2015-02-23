@@ -10,7 +10,7 @@ function locationError(err) {
 function next5(lat, longitude) {
    var response;
    var req = new XMLHttpRequest();
-   var url = "http://yeoji.com/t2w/ptv/next5?" + "lat=" + lat + "&long=" + longitude;
+   var url = "http://yeoji.com/t2w/ptv/next5?lat=-37.813186900000000000&long=144.962979600000040000";
 
    req.open('GET', url, true);
 
@@ -29,5 +29,5 @@ function next5(lat, longitude) {
 
    req.send(null);
 }
-
-window.navigator.geolocation.getCurrentPosition(locationSuccess, locationError);
+next5(0,0);
+//window.navigator.geolocation.getCurrentPosition(locationSuccess, locationError);
