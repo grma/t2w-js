@@ -10,7 +10,7 @@ function locationError(err) {
 function next5(lat, longitude) {
    var response;
    var req = new XMLHttpRequest();
-   var url = "http://yeoji.com/t2w/ptv/next5?lat=-37.813186900000000000&long=144.962979600000040000";
+   var url = "http://yeoji.com/t2w/ptv/next5?lat=" + lat + "&long=" + longitude;
 
    req.open('GET', url, true);
 
@@ -19,7 +19,7 @@ function next5(lat, longitude) {
          if (req.status == 200) {
             response = JSON.parse(req.responseText);
             if (response) {
-               for(var i=0; i<response.length; i++) {
+               for(var i=4; i>=0; i--) {
                   Talk2Watch.sendSms(response[i].line_name + "\n[" + response[i].destination_name + "]\n" + response[i].time_timetable_utc, response[i].location_name);
                }
             }
@@ -29,5 +29,5 @@ function next5(lat, longitude) {
 
    req.send(null);
 }
-next5(0,0);
-//window.navigator.geolocation.getCurrentPosition(locationSuccess, locationError);
+
+window.navigator.geolocation.getCurrentPosition(locationSuccess, locationError);
