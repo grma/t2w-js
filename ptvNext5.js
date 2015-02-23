@@ -3,6 +3,10 @@ function locationSuccess(pos) {
    next5(coordinates.latitude, coordinates.longitude);
 }
 
+function locationError() {
+   Talk2Watch.sendSms("Couldn't get location :(", "Uh Oh");
+}
+
 function next5(lat, longitude) {
    var response;
    var req = new XMLHttpRequest();
