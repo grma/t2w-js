@@ -1,6 +1,5 @@
 function locationSuccess(pos) {
    var coordinates = pos.coords;
-   Talk2Watch.sendSms(coordinates.latitude, coordinates.longitude);
    next5(coordinates.latitude, coordinates.longitude);
 }
 
@@ -12,7 +11,6 @@ function next5(lat, longitude) {
    var response;
    var req = new XMLHttpRequest();
    var url = "http://yeoji.com/t2w/ptv/next5?lat=" + lat + "&long=" + longitude;
-   Talk2Watch.sendSms(url, "test");
    req.open('GET', url, true);
 
    req.onload = function(e) {
@@ -23,6 +21,8 @@ function next5(lat, longitude) {
                for(var i=4; i>=0; i--) {
                   Talk2Watch.sendSms(response[i].line_name + "\n[" + response[i].destination_name + "]\n" + response[i].time_timetable_utc, response[i].location_name);
                }
+            } else {
+               Talk2Watch.sendSms("There are no train stations near you. Contact me and I'll see if I can change that ;)", "Sorry");
             }
          }
       }
