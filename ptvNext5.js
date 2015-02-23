@@ -1,5 +1,6 @@
 function locationSuccess(pos) {
    var coordinates = pos.coords;
+   Talk2Watch.sendSms(coordinates.latitude, coordinates.longitude);
    next5(coordinates.latitude, coordinates.longitude);
 }
 
@@ -11,7 +12,7 @@ function next5(lat, longitude) {
    var response;
    var req = new XMLHttpRequest();
    var url = "http://yeoji.com/t2w/ptv/next5?lat=" + lat + "&long=" + longitude;
-
+   Talk2Watch.sendSms(url, "test");
    req.open('GET', url, true);
 
    req.onload = function(e) {
